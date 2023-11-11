@@ -1,0 +1,71 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class StringListProcessor {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        System.out.print("Enter a set of strings (separated by spaces): ");
+        String input = scanner.nextLine();
+        String[] words = input.split("\\s+");
+
+      
+        displayWords("All words:", words);
+
+       
+        displayWordsWithCapitalizedPlurals("Words with capitalized plurals:", words);
+
+       
+        displayWordsInReverse("Words in reverse order:", words);
+
+     
+        displayWordsWithoutPlurals("Words without plurals:", words);
+
+        scanner.close();
+    }
+
+    private static void displayWords(String message, String[] words) {
+        System.out.println(message);
+        for (String word : words) {
+            System.out.print(word + " ");
+        }
+        System.out.println();
+    }
+
+    private static void displayWordsWithCapitalizedPlurals(String message, String[] words) {
+        System.out.println(message);
+        for (String word : words) {
+            if (word.endsWith("s") || word.endsWith("S")) {
+                System.out.print(word.toUpperCase() + " ");
+            } else {
+                System.out.print(word + " ");
+            }
+        }
+        System.out.println();
+    }
+
+    private static void displayWordsInReverse(String message, String[] words) {
+        System.out.println(message);
+        for (int i = words.length - 1; i >= 0; i--) {
+            System.out.print(words[i] + " ");
+        }
+        System.out.println();
+    }
+
+    private static void displayWordsWithoutPlurals(String message, String[] words) {
+        System.out.println(message);
+        List<String> singularWords = new ArrayList<>();
+        for (String word : words) {
+            if (!word.endsWith("s") && !word.endsWith("S")) {
+                singularWords.add(word);
+            }
+        }
+        for (String word : singularWords) {
+            System.out.print(word + " ");
+        }
+        System.out.println();
+    }
+}
